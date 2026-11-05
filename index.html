@@ -3,240 +3,292 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Essência de Noctun — Cardápio</title>
-<meta name="description" content="Cardápio da Essência de Noctun, cafeteria esotérica.">
+<title>Essência de Noctun — Cafeteria Esotérica</title>
+<meta name="description" content="Essência de Noctun, cafeteria esotérica na Piteira, Barra Mansa. Cafés, drinks, salgados e doces com um toque de magia.">
+<meta name="theme-color" content="#0b0710">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Marcellus+SC&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#0d0810;
-  --bg2:#150d19;
-  --card:rgba(255,235,210,.035);
-  --line:rgba(214,166,128,.28);
-  --gold:#d9a882;
-  --gold-hi:#f1d2b4;
-  --text:#e9dccd;
-  --muted:#a99a8e;
-  --violet:#8a6bbf;
+  --bg:#0b0710;
+  --bg-2:#130c18;
+  --plum:#24152b;
+  --ink:#efe3d3;
+  --muted:#a8988c;
+  --gold:#c9a27a;
+  --gold-hi:#ecd0ae;
+  --line:rgba(201,162,122,.22);
+  --glow:rgba(201,162,122,.28);
+  --violet:rgba(128,92,180,.22);
+  --serif:'Cormorant',Georgia,'Times New Roman',serif;
+  --caps:'Marcellus SC','Cormorant',Georgia,serif;
+  --gutter:clamp(16px,4vw,40px);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
+  background:var(--bg);color:var(--ink);
+  font-family:var(--serif);font-size:19px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{display:block;max-width:100%}
+a{color:inherit}
+::selection{background:var(--gold);color:var(--bg)}
+
+/* fundo: brilho + grão */
+.sky{position:fixed;inset:0;z-index:-1;pointer-events:none;
   background:
-    radial-gradient(900px 500px at 85% -5%,rgba(138,107,191,.20),transparent 60%),
-    radial-gradient(700px 500px at 5% 35%,rgba(138,107,191,.10),transparent 60%),
-    radial-gradient(800px 600px at 50% 110%,rgba(217,168,130,.10),transparent 60%),
-    var(--bg);
-  color:var(--text);
-  font-family:'Cormorant Garamond',Georgia,serif;
-  font-size:18px;line-height:1.4;
-  min-height:100vh;
-  -webkit-font-smoothing:antialiased;
-}
-/* estrelas */
-body::before{
-  content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;
-  background-image:
-    radial-gradient(1px 1px at 12% 18%,#f1d2b4,transparent),
-    radial-gradient(1px 1px at 78% 12%,#f1d2b4,transparent),
-    radial-gradient(1.5px 1.5px at 33% 62%,#d9a882,transparent),
-    radial-gradient(1px 1px at 90% 70%,#f1d2b4,transparent),
-    radial-gradient(1px 1px at 55% 35%,#d9a882,transparent),
-    radial-gradient(1.5px 1.5px at 8% 88%,#f1d2b4,transparent),
-    radial-gradient(1px 1px at 66% 92%,#d9a882,transparent);
-}
-.wrap{position:relative;max-width:1080px;margin:0 auto;padding:0 20px 64px}
+    radial-gradient(60vw 50vh at 80% 0%,var(--violet),transparent 70%),
+    radial-gradient(50vw 50vh at 0% 60%,rgba(128,92,180,.10),transparent 70%),
+    radial-gradient(70vw 40vh at 50% 100%,rgba(201,162,122,.07),transparent 70%),
+    var(--bg)}
+.sky i{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--gold-hi);opacity:0;animation:tw 6s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:.8}}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:100;opacity:.07;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+.container{max-width:1180px;margin:0 auto;padding:0 var(--gutter)}
+.caps{font-family:var(--caps);letter-spacing:.28em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
 
 /* ---------- topo ---------- */
-header{text-align:center;padding:56px 0 28px;position:relative}
-.sun{position:absolute;right:0;top:28px;width:110px;opacity:.75}
-.moon-l{position:absolute;left:0;top:34px;width:70px;opacity:.8}
-.brand{
-  font-family:'Cinzel',serif;font-weight:500;
-  font-size:clamp(2rem,6vw,3.6rem);letter-spacing:.04em;
-  color:var(--gold-hi);
-  text-shadow:0 0 28px rgba(217,168,130,.35);
-}
-.sub{
-  font-family:'Cinzel',serif;letter-spacing:.42em;text-transform:uppercase;
-  font-size:clamp(.7rem,1.8vw,.95rem);color:var(--gold);margin-top:6px;
-}
-.tag{font-style:italic;font-size:clamp(1.1rem,2.6vw,1.4rem);color:var(--muted);margin-top:16px}
-.orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:26px auto 0;max-width:420px;color:var(--gold)}
-.orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
-.orn::after{transform:scaleX(-1)}
+.topbar{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.topbar.solid{background:rgba(11,7,16,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-color:var(--line)}
+.topbar .container{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--caps);letter-spacing:.18em;font-size:.9rem;color:var(--gold-hi)}
+.logo svg{width:22px;height:22px;color:var(--gold)}
+.topbar nav{display:flex;gap:28px}
+.topbar nav a{font-family:var(--caps);font-size:.72rem;letter-spacing:.24em;text-decoration:none;color:var(--muted);transition:color .2s}
+.topbar nav a:hover{color:var(--gold-hi)}
 
-/* ---------- navegação ---------- */
-nav{
-  position:sticky;top:0;z-index:10;
-  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
-  padding:12px 0;margin-bottom:8px;
-  background:linear-gradient(var(--bg) 70%,transparent);
-}
-nav a{
-  font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gold);text-decoration:none;
-  border:1px solid var(--line);border-radius:999px;padding:7px 14px;
-  transition:.2s;
-}
-nav a:hover,nav a:focus-visible{background:rgba(217,168,130,.14);color:var(--gold-hi);outline:none}
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;padding:110px 0 90px;overflow:hidden}
+.ring{position:absolute;width:min(760px,130vw);aspect-ratio:1;left:50%;top:50%;translate:-50% -50%;color:var(--gold);opacity:.38;animation:spin 160s linear infinite}
+@keyframes spin{to{rotate:360deg}}
+.hero-inner{position:relative;z-index:2}
+.hero .caps{display:inline-flex;align-items:center;gap:14px}
+.hero .caps::before,.hero .caps::after{content:"";width:34px;height:1px;background:var(--gold);opacity:.6}
+.title{margin:22px 0 4px;font-weight:300;line-height:.86;color:var(--gold-hi);text-shadow:0 0 50px var(--glow)}
+.title em{display:block;font-style:italic;font-size:clamp(4rem,14vw,9.5rem);letter-spacing:-.01em}
+.title span{display:block;font-family:var(--caps);font-size:clamp(1.1rem,3.4vw,2.1rem);letter-spacing:.5em;margin-top:18px;padding-left:.5em;color:var(--gold)}
+.lead{font-style:italic;font-size:clamp(1.2rem,2.6vw,1.55rem);color:var(--muted);margin:30px auto 0;max-width:30ch}
+.actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:40px}
+.btn{font-family:var(--caps);font-size:.76rem;letter-spacing:.24em;text-decoration:none;padding:16px 30px;border-radius:999px;transition:transform .25s,box-shadow .25s,background .25s}
+.btn-gold{background:linear-gradient(135deg,var(--gold-hi),var(--gold));color:#1b1015;box-shadow:0 10px 40px -10px var(--glow)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 14px 50px -8px rgba(236,208,174,.45)}
+.btn-ghost{border:1px solid var(--line);color:var(--gold-hi)}
+.btn-ghost:hover{background:rgba(201,162,122,.1)}
+.float{position:absolute;z-index:1;width:clamp(120px,13vw,170px);aspect-ratio:1;border-radius:50%;object-fit:cover;
+  box-shadow:0 0 0 1px var(--line),0 0 0 8px rgba(11,7,16,.6),0 0 0 9px var(--line),0 30px 60px -20px #000;animation:bob 9s ease-in-out infinite}
+.f1{left:6%;top:24%}.f2{right:7%;top:20%;animation-delay:-3s}.f3{left:12%;bottom:12%;animation-delay:-5s;width:clamp(100px,10vw,130px)}.f4{right:11%;bottom:14%;animation-delay:-7s;width:clamp(100px,10vw,130px)}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -14px}}
+.scroll{position:absolute;bottom:22px;left:50%;translate:-50% 0;z-index:2;display:flex;flex-direction:column;align-items:center;gap:10px;text-decoration:none}
+.scroll::after{content:"";width:1px;height:42px;background:linear-gradient(var(--gold),transparent);animation:drop 2.4s ease-in-out infinite;transform-origin:top}
+@keyframes drop{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
 
-/* ---------- seções ---------- */
-section{margin-top:44px;scroll-margin-top:70px}
-h2{
-  font-family:'Cinzel',serif;font-weight:400;
-  font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:.08em;
-  color:var(--gold-hi);text-align:center;
-  display:flex;align-items:center;gap:16px;
-}
-h2::before,h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
-h2::after{transform:scaleX(-1)}
-h2 span{display:inline-flex;align-items:center;gap:12px}
-h2 svg{width:20px;height:20px;color:var(--gold)}
+/* ---------- faixa ---------- */
+.marquee{border-block:1px solid var(--line);overflow:hidden;padding:18px 0;background:rgba(36,21,43,.35)}
+.marquee div{display:flex;width:max-content;animation:slide 40s linear infinite}
+.marquee span{font-style:italic;font-size:1.5rem;color:var(--gold-hi);white-space:nowrap;display:flex;align-items:center;gap:44px;padding-right:44px}
+.marquee span::after{content:"✦";font-style:normal;font-size:.8rem;color:var(--gold)}
+@keyframes slide{to{transform:translateX(-50%)}}
 
-.grid{
-  display:grid;gap:14px;margin-top:22px;
-  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-}
-.item{
-  position:relative;
-  background:var(--card);
-  border:1px solid var(--line);border-radius:14px;
-  padding:16px 18px 16px;
-  transition:transform .25s,border-color .25s,background .25s;
-}
-.item:hover{transform:translateY(-3px);border-color:rgba(241,210,180,.6);background:rgba(255,235,210,.06)}
-.item::after{ /* canto ornamental */
-  content:"";position:absolute;top:8px;right:8px;width:14px;height:14px;
-  border-top:1px solid var(--gold);border-right:1px solid var(--gold);border-top-right-radius:6px;opacity:.5;
-}
-.item.has-img{display:flex;gap:16px;align-items:center}
-.item.has-img img{width:96px;height:96px;flex:none;border-radius:10px;object-fit:cover;border:1px solid var(--line);background:#120a15}
-.item.has-img .txt{flex:1;min-width:0}
-.row{display:flex;align-items:baseline;gap:10px}
-.name{font-style:italic;font-weight:500;font-size:1.3rem;color:var(--gold-hi)}
-.dots{flex:1;border-bottom:1px dotted rgba(214,166,128,.35);transform:translateY(-4px);min-width:14px}
-.price{font-family:'Cinzel',serif;font-size:.98rem;color:var(--gold);white-space:nowrap}
-.desc{color:var(--muted);font-size:1.02rem;margin-top:4px}
+/* ---------- sobre ---------- */
+.about{padding:clamp(80px,12vw,150px) var(--gutter);display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,7vw,100px);align-items:center}
+.about h2{font-weight:300;font-size:clamp(2.4rem,5.5vw,4rem);line-height:1.02;color:var(--gold-hi);margin:18px 0 26px}
+.about h2 em{color:var(--gold)}
+.about p{color:var(--muted);font-size:1.2rem;max-width:46ch}
+.about p+p{margin-top:16px}
+.arch{position:relative;aspect-ratio:4/5;border-radius:999px 999px 18px 18px;overflow:hidden;border:1px solid var(--line);
+  background:radial-gradient(circle at 50% 30%,var(--plum),var(--bg-2))}
+.arch .grid3{position:absolute;inset:14%;display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:center}
+.arch .grid3 img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:0 0 0 1px var(--line),0 20px 40px -18px #000}
+.arch .grid3 img:nth-child(odd){translate:0 16px}
+.arch::after{content:"";position:absolute;inset:10px;border-radius:999px 999px 12px 12px;border:1px solid var(--line);pointer-events:none}
 
-/* ---------- extras ---------- */
-.extras{
-  max-width:560px;margin:22px auto 0;
-  border:1px solid var(--line);border-radius:14px;padding:8px 22px;
-  background:var(--card);
+/* ---------- cardápio ---------- */
+.menu-head{text-align:center;padding-top:20px}
+.menu-head h2{font-weight:300;font-style:italic;font-size:clamp(3rem,8vw,5.5rem);color:var(--gold-hi);line-height:1;margin-top:14px}
+.tabs{position:sticky;top:68px;z-index:40;margin-top:36px;background:rgba(11,7,16,.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-block:1px solid var(--line)}
+.tabs .container{display:flex;justify-content:center;gap:6px;overflow-x:auto;scrollbar-width:none;padding-block:10px}
+.tabs .container::-webkit-scrollbar{display:none}
+.tabs a{flex:none;font-family:var(--caps);font-size:.72rem;letter-spacing:.2em;text-decoration:none;color:var(--muted);padding:9px 18px;border-radius:999px;transition:.25s}
+.tabs a:hover{color:var(--gold-hi)}
+.tabs a.on{background:rgba(201,162,122,.14);color:var(--gold-hi);box-shadow:inset 0 0 0 1px var(--line)}
+
+.cat{padding-top:clamp(64px,9vw,110px);scroll-margin-top:140px}
+.cat-head{display:flex;align-items:flex-end;gap:24px;margin-bottom:44px}
+.cat-head .num{font-family:var(--serif);font-weight:300;font-size:clamp(3rem,7vw,5.2rem);line-height:.8;color:var(--gold);opacity:.45}
+.cat-head h3{font-weight:300;font-style:italic;font-size:clamp(2.2rem,5vw,3.4rem);line-height:1;color:var(--gold-hi)}
+.cat-head p{color:var(--muted);font-style:italic;margin-top:6px}
+.cat-head::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--line),transparent);margin-bottom:14px}
+
+.dishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:clamp(28px,4vw,48px) clamp(18px,3vw,32px)}
+.dish{text-align:center;display:flex;flex-direction:column;align-items:center}
+.plate{position:relative;width:min(170px,100%);aspect-ratio:1;margin-bottom:22px}
+.plate::before{content:"";position:absolute;inset:-9px;border-radius:50%;border:1px solid var(--line);transition:inset .5s,border-color .5s}
+.plate img{width:100%;height:100%;border-radius:50%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s;box-shadow:0 24px 40px -22px #000}
+.dish:hover .plate img{transform:scale(1.06);box-shadow:0 0 50px -6px var(--glow)}
+.dish:hover .plate::before{inset:-14px;border-color:rgba(236,208,174,.5)}
+.dish h4{font-weight:500;font-size:1.45rem;line-height:1.15;color:var(--gold-hi)}
+.dish p{color:var(--muted);font-size:1.05rem;line-height:1.35;margin-top:6px;max-width:26ch}
+.price{margin-top:12px;font-family:var(--caps);font-size:.9rem;letter-spacing:.12em;color:var(--gold);display:inline-flex;align-items:center;gap:10px}
+.price::before,.price::after{content:"";width:16px;height:1px;background:var(--gold);opacity:.5}
+
+.extras{margin-top:clamp(70px,10vw,120px);border:1px solid var(--line);border-radius:22px;padding:clamp(28px,4vw,48px);
+  background:linear-gradient(135deg,rgba(36,21,43,.6),rgba(19,12,24,.3));display:grid;grid-template-columns:auto 1fr;gap:clamp(24px,5vw,70px);align-items:center;scroll-margin-top:140px}
+.extras h3{font-weight:300;font-style:italic;font-size:2.6rem;color:var(--gold-hi);line-height:1;margin-top:8px}
+.extras ul{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:6px 40px}
+.extras li{display:flex;align-items:baseline;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,162,122,.12)}
+.extras li span:first-child{font-size:1.15rem}
+.extras li i{flex:1;border-bottom:1px dotted rgba(201,162,122,.35);translate:0 -5px;min-width:12px}
+.extras li span:last-child{font-family:var(--caps);font-size:.85rem;color:var(--gold);white-space:nowrap}
+
+/* ---------- visite ---------- */
+.visit{margin-top:clamp(90px,13vw,160px);text-align:center;scroll-margin-top:90px}
+.visit h2{font-weight:300;font-style:italic;font-size:clamp(2.8rem,7vw,4.6rem);color:var(--gold-hi);line-height:1;margin-top:14px}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:22px;overflow:hidden;margin-top:48px}
+.info div{background:var(--bg);padding:36px 24px}
+.info .caps{display:block;margin-bottom:12px}
+.info p{font-size:1.25rem}
+.info a{color:var(--gold-hi);text-underline-offset:4px}
+
+footer{margin-top:clamp(90px,12vw,150px);padding:56px 0 40px;border-top:1px solid var(--line);text-align:center}
+footer .quote{font-style:italic;font-weight:300;font-size:clamp(1.6rem,4vw,2.4rem);color:var(--gold-hi)}
+.phases{display:flex;justify-content:center;gap:16px;margin:26px 0;color:var(--gold)}
+.phases svg{width:18px;height:18px}
+footer small{color:var(--muted);font-size:.9rem}
+
+.wa{position:fixed;right:20px;bottom:20px;z-index:60;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:#1f9d55;color:#fff;box-shadow:0 10px 30px -6px rgba(0,0,0,.6)}
+.wa svg{width:28px;height:28px}
+
+/* revelar ao rolar */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+
+@media (max-width:900px){
+  .topbar nav{display:none}
+  .about{grid-template-columns:1fr}
+  .arch{max-width:400px;width:100%;margin:0 auto}
+  .extras{grid-template-columns:1fr}
+  .float{display:none}
 }
-.extras .row{padding:11px 0}
-.extras .row + .row{border-top:1px solid rgba(214,166,128,.12)}
-.extras .name{font-style:normal;font-size:1.12rem;color:var(--text)}
-
-footer{text-align:center;margin-top:56px}
-footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0 24px rgba(217,168,130,.3)}
-.phases{display:flex;justify-content:center;gap:14px;margin-top:20px;color:var(--gold)}
-.phases svg{width:20px;height:20px}
-
-.hero{min-height:62vh;display:flex;flex-direction:column;justify-content:center}
-.cta{display:inline-block;margin-top:28px;font-family:'Cinzel',serif;letter-spacing:.16em;text-transform:uppercase;font-size:.85rem;
-  color:#1a0f14;background:linear-gradient(135deg,var(--gold-hi),var(--gold));padding:13px 28px;border-radius:999px;text-decoration:none;
-  box-shadow:0 0 30px rgba(217,168,130,.3);transition:.2s}
-.cta:hover,.cta:focus-visible{transform:translateY(-2px);box-shadow:0 0 40px rgba(217,168,130,.5);outline:none}
-.about{max-width:680px;margin:22px auto 0;text-align:center;font-size:1.25rem;color:var(--text)}
-.about p+p{margin-top:14px;color:var(--muted)}
-.info{display:grid;gap:14px;margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-.info .item{text-align:center;padding:22px 18px}
-.info h3{font-family:'Cinzel',serif;font-weight:400;font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
-.info a{color:var(--gold-hi)}
-.wa{position:fixed;right:18px;bottom:18px;z-index:20;background:#25a35a;color:#fff;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.1em;
-  text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.45)}
 @media (max-width:640px){
-  body{font-size:17px}
-  .sun,.moon-l{display:none}
-  header{padding-top:40px}
-  .grid{grid-template-columns:1fr}
-  .item.has-img{gap:12px}
-  .item.has-img img{width:80px;height:80px}
-  nav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
-  nav::-webkit-scrollbar{display:none}
-  nav a{flex:none;white-space:nowrap}
+  body{font-size:18px}
+  .tabs .container{justify-content:flex-start}
+  .dishes{grid-template-columns:1fr 1fr;gap:34px 14px}
+  .plate{width:min(130px,100%)}
+  .dish h4{font-size:1.22rem}
+  .dish p{font-size:.98rem}
+  .extras ul{grid-template-columns:1fr}
+  .cat-head{gap:14px;margin-bottom:32px}
+  .cat-head::after{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
 }
 @media print{
-  body{background:#fff;color:#222}
-  body::before,nav,.sun,.moon-l,.cta,.wa{display:none}
-  .item,.extras{border-color:#bbb;background:none;break-inside:avoid}
-  .brand,h2,.name,footer p{color:#5a3a1e;text-shadow:none}
-  .price,.sub{color:#7a5a3e}.desc{color:#555}
+  .sky,body::after,.topbar,.tabs,.float,.ring,.scroll,.marquee,.actions,.wa{display:none!important}
+  body{background:#fff;color:#222}.reveal{opacity:1;transform:none}
+  .hero{min-height:auto;padding:20px 0}
 }
-@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
-<body>
+<body class="no-js">
+<script>document.body.classList.remove('no-js')</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <symbol id="crescent" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 3a9 9 0 1 0 5.5 16A7.5 7.5 0 0 1 15.5 3z"/></symbol>
-    <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></symbol>
     <symbol id="full" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor"/></symbol>
-    <symbol id="half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="currentColor" d="M12 4a8 8 0 0 1 0 16z"/></symbol>
+    <symbol id="half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.4"/><path fill="currentColor" d="M12 4a8 8 0 0 1 0 16z"/></symbol>
+    <symbol id="new" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
   </defs>
 </svg>
+<div class="sky" id="sky" aria-hidden="true"></div>
 
-<div class="wrap">
-  <header class="hero" id="topo">
-    <svg class="moon-l" viewBox="0 0 100 130" fill="none" stroke="currentColor" style="color:var(--gold)" aria-hidden="true">
-      <path d="M72 6a58 58 0 1 0 0 118A46 46 0 0 1 72 6z" stroke-width="2"/>
-      <path d="M62 22a40 40 0 0 0 0 86" stroke-width="1" opacity=".6"/>
-    </svg>
-    <svg class="sun" viewBox="0 0 120 120" fill="none" stroke="currentColor" style="color:var(--gold)" aria-hidden="true">
-      <circle cx="60" cy="60" r="26" stroke-width="1.6"/>
-      <circle cx="60" cy="60" r="19" stroke-width="1" opacity=".6"/>
-      <g stroke-width="1.4">
-        <path d="M60 4v18M60 98v18M4 60h18M98 60h18M20 20l13 13M87 87l13 13M100 20L87 33M33 87L20 100"/>
-        <path d="M60 14v8M60 98v8M14 60h8M98 60h8" opacity=".5"/>
-      </g>
-      <path d="M52 56q3-3 6 0M62 56q3-3 6 0M54 70q6 5 12 0" stroke-width="1.3"/>
-    </svg>
+<header class="topbar" id="topbar">
+  <div class="container">
+    <a class="logo" href="#topo"><svg><use href="#crescent"/></svg>Noctun</a>
+    <nav aria-label="Principal">
+      <a href="#sobre">Sobre</a>
+      <a href="#cardapio">Cardápio</a>
+      <a href="#visite" data-needs-contact>Visite</a>
+    </nav>
+  </div>
+</header>
 
-    <h1 class="brand">Essência de Noctun</h1>
-    <p class="sub">Cafeteria Esotérica</p>
-    <p class="tag">Mais que uma cafeteria, um refúgio entre mundos.</p>
-    <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
-    <div><a class="cta" href="#cafes">Ver cardápio</a></div>
-  </header>
+<section class="hero" id="topo">
+  <svg class="ring" viewBox="0 0 400 400" fill="none" stroke="currentColor" aria-hidden="true">
+    <circle cx="200" cy="200" r="196" stroke-width=".6"/>
+    <circle cx="200" cy="200" r="178" stroke-width=".6" stroke-dasharray="1 5"/>
+    <circle cx="200" cy="200" r="150" stroke-width=".4"/>
+    <g id="ticks" stroke-width=".6"></g>
+    <path d="M200 50 L330 275 L70 275 Z M200 350 L70 125 L330 125 Z" stroke-width=".35" opacity=".7"/>
+  </svg>
 
-  <nav aria-label="Seções do cardápio">
-    <a href="#sobre">Sobre</a>
-    <a href="#cafes">Cafés</a>
-    <a href="#drinks">Drinks</a>
-    <a href="#salgados">Salgados</a>
-    <a href="#doces">Doces</a>
-    <a href="#extras">Extras</a>
-    <a href="#visite" id="nav-visite" hidden>Visite</a>
-  </nav>
+  <img class="float f1" src="img/cappuccino-da-lua.webp" alt="" aria-hidden="true">
+  <img class="float f2" src="img/sangue-da-lua.webp" alt="" aria-hidden="true">
+  <img class="float f3" src="img/fatia-de-venus.webp" alt="" aria-hidden="true">
+  <img class="float f4" src="img/crescente-lunar.webp" alt="" aria-hidden="true">
 
-  <section id="sobre">
-    <h2><span>Sobre</span></h2>
-    <div class="about">
-      <p>Mais que uma cafeteria, um refúgio entre mundos. Aqui o café encontra o místico: cada xícara, drink e doce leva o nome de uma lua, uma deusa ou um oráculo.</p>
-      <p>Entre, respire fundo e deixe a noite te acolher.</p>
+  <div class="hero-inner container">
+    <p class="caps">Cafeteria Esotérica</p>
+    <h1 class="title"><em>Essência</em><span>de Noctun</span></h1>
+    <p class="lead">Mais que uma cafeteria, um refúgio entre mundos.</p>
+    <div class="actions">
+      <a class="btn btn-gold" href="#cardapio">Ver cardápio</a>
+      <a class="btn btn-ghost" href="#visite" data-needs-contact>Como chegar</a>
     </div>
-  </section>
+  </div>
+  <a class="scroll caps" href="#sobre" aria-label="Rolar para baixo">Descer</a>
+</section>
 
-  <main id="menu"><!-- gerado abaixo --></main>
+<div class="marquee" aria-hidden="true"><div id="marquee"></div></div>
 
-  <div id="visite-slot"></div>
+<section class="container about" id="sobre">
+  <div class="reveal">
+    <p class="caps">O refúgio</p>
+    <h2>Onde o café encontra o <em>místico</em>.</h2>
+    <p>Cada xícara, drink e doce da casa leva o nome de uma lua, uma deusa ou um oráculo. Um lugar para desacelerar, conversar baixinho e deixar a noite chegar.</p>
+    <p>Entre, respire fundo e escolha o seu ritual.</p>
+  </div>
+  <div class="arch reveal" aria-hidden="true">
+    <div class="grid3">
+      <img src="img/pocao-de-cacau.webp" alt="" loading="lazy">
+      <img src="img/aura-violeta.webp" alt="" loading="lazy">
+      <img src="img/brownie-da-meia-noite.webp" alt="" loading="lazy">
+      <img src="img/lagrimas-de-selene.webp" alt="" loading="lazy">
+    </div>
+  </div>
+</section>
 
-  <footer>
-    <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
-    <p>Que a magia do café ilumine o seu dia.</p>
+<section id="cardapio">
+  <div class="menu-head container reveal">
+    <p class="caps">Cardápio</p>
+    <h2>Os rituais da casa</h2>
+  </div>
+  <nav class="tabs" aria-label="Categorias do cardápio"><div class="container" id="tabs"></div></nav>
+  <div class="container" id="menu"></div>
+</section>
+
+<div class="container" id="visite-slot"></div>
+
+<footer>
+  <div class="container">
+    <p class="quote">Que a magia do café ilumine o seu dia.</p>
     <div class="phases" aria-hidden="true">
-      <svg><use href="#crescent"/></svg><svg><use href="#half"/></svg><svg><use href="#full"/></svg><svg><use href="#half" style="transform:scaleX(-1);transform-origin:center"/></svg><svg style="transform:scaleX(-1)"><use href="#crescent"/></svg>
+      <svg><use href="#new"/></svg><svg style="transform:scaleX(-1)"><use href="#crescent"/></svg><svg><use href="#half"/></svg><svg><use href="#full"/></svg><svg style="transform:scaleX(-1)"><use href="#half"/></svg><svg><use href="#crescent"/></svg><svg><use href="#new"/></svg>
     </div>
-  </footer>
-</div>
+    <small>© Essência de Noctun · Piteira, Barra Mansa/RJ</small>
+  </div>
+</footer>
 
 <script>
-// Para alterar o cardápio, edite apenas esta estrutura.
+// ===================== DADOS — edite aqui =====================
 const MENU = [
-  { id:"cafes", titulo:"Cafés", itens:[
+  { id:"cafes", titulo:"Cafés", sub:"Para despertar os sentidos", itens:[
     ["Cappuccino da Lua","Espresso, leite vaporizado e canela.",16,"cappuccino-da-lua"],
     ["Elixir de Vênus","Espresso, leite cremoso e baunilha.",18,"elixir-de-venus"],
     ["Poção de Cacau","Espresso, leite e chocolate, finalizado com chantilly.",18,"pocao-de-cacau"],
@@ -244,20 +296,20 @@ const MENU = [
     ["Lua Negra","Espresso duplo para os amantes do café forte.",16,"lua-negra"],
     ["Oráculo Gelado","Cold brew servido com gelo.",16,"oraculo-gelado"],
   ]},
-  { id:"drinks", titulo:"Drinks", itens:[
+  { id:"drinks", titulo:"Drinks", sub:"Elixires gelados", itens:[
     ["Sangue da Lua","Frutas vermelhas, hibisco, limão e água com gás.",18,"sangue-da-lua"],
     ["Lágrimas de Selene","Limonada com lavanda.",17,"lagrimas-de-selene"],
     ["Elixir Solar","Maracujá, laranja, alecrim e água com gás.",17,"elixir-solar"],
     ["Aura Violeta","Uva, limão e água gaseificada.",17,"aura-violeta"],
   ]},
-  { id:"salgados", titulo:"Comidas Salgadas", itens:[
+  { id:"salgados", titulo:"Salgados", sub:"Do forno para a mesa", itens:[
     ["Crescente Lunar","Croissant amanteigado com queijo e presunto.",18,"crescente-lunar"],
     ["Maná dos Deuses","Pão de queijo quentinho.",15,"mana-dos-deuses"],
     ["Tostex do Sol","Misto quente com queijo e presunto.",16,"tostex-do-sol"],
     ["Sanduíche do Alquimista","Frango, queijo, folhas e molho da casa.",20,"sanduiche-do-alquimista"],
     ["Torrada da Deusa","Pão artesanal com cream cheese e ervas.",16,"torrada-da-deusa"],
   ]},
-  { id:"doces", titulo:"Doces e Petiscos", itens:[
+  { id:"doces", titulo:"Doces", sub:"Pequenos encantamentos", itens:[
     ["Brownie da Meia-Noite","Brownie de chocolate com calda.",16,"brownie-da-meia-noite"],
     ["Fatia de Vênus","Cheesecake com calda de frutas vermelhas.",18,"fatia-de-venus"],
     ["Lua de Cristal","Cheesecake com frutas.",18,"lua-de-cristal"],
@@ -273,62 +325,104 @@ const EXTRAS = [
   ["Chantilly",2],
   ["Mel ou açúcar mascavo",1],
 ];
-
-const brl = n => "R$ " + n.toFixed(0);
-const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const icon = '<svg aria-hidden="true"><use href="#crescent"/></svg>';
-
-let html = MENU.map(s => `
-  <section id="${s.id}">
-    <h2><span>${icon}${esc(s.titulo)}${icon}</span></h2>
-    <div class="grid">
-      ${s.itens.map(([n,d,p,img]) => `
-        <article class="item has-img">
-          <img src="img/${img}.webp" alt="${esc(n)}" width="96" height="96" loading="lazy">
-          <div class="txt">
-            <div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">${brl(p)}</span></div>
-            <p class="desc">${esc(d)}</p>
-          </div>
-        </article>`).join("")}
-    </div>
-  </section>`).join("");
-
-html += `
-  <section id="extras">
-    <h2><span>${icon}Extras${icon}</span></h2>
-    <div class="extras">
-      ${EXTRAS.map(([n,p]) => `<div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">+ ${brl(p)}</span></div>`).join("")}
-    </div>
-  </section>`;
-
-document.getElementById("menu").innerHTML = html;
-
-// ---- Contato: preencha os campos abaixo. Campos vazios não aparecem no site. ----
+// Campos vazios não aparecem no site.
 const CONTATO = {
   endereco: "Rua das Luas, 123 — Piteira, Barra Mansa/RJ",   // FICTÍCIO (só bairro/cidade são reais)
   horario:  "Ter a Dom, 14h às 22h",   // FICTÍCIO
   whatsapp: "",   // preencha com o número real (só dígitos com DDI/DDD)
   instagram:"essenciadenoctun",   // FICTÍCIO
 };
-const cards = [];
-if (CONTATO.endereco) cards.push(["Endereço", esc(CONTATO.endereco) +
-  ` <br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTATO.endereco)}" target="_blank" rel="noopener">Ver no mapa</a>`]);
-if (CONTATO.horario) cards.push(["Horários", esc(CONTATO.horario)]);
-const wa = CONTATO.whatsapp.replace(/\D/g,"");
-if (wa) cards.push(["WhatsApp", `<a href="https://wa.me/${wa}" target="_blank" rel="noopener">Fale conosco</a>`]);
-const ig = CONTATO.instagram.replace(/[^\w.]/g,"");
-if (ig) cards.push(["Instagram", `<a href="https://instagram.com/${ig}" target="_blank" rel="noopener">@${ig}</a>`]);
+// ==============================================================
 
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const brl = n => "R$ " + n;
+const ROMAN = ["I","II","III","IV","V","VI"];
+
+// céu, anel e faixa
+(() => {
+  let h = "";
+  for (let i = 0; i < 46; i++)
+    h += `<i style="left:${Math.random()*100}%;top:${Math.random()*100}%;animation-delay:${(Math.random()*6).toFixed(2)}s;animation-duration:${(4+Math.random()*5).toFixed(2)}s"></i>`;
+  $("#sky").innerHTML = h;
+  let t = "";
+  for (let i = 0; i < 72; i++) {
+    const a = i * 5 * Math.PI / 180, r1 = 178, r2 = i % 6 ? 186 : 196;
+    t += `<line x1="${(200+r1*Math.cos(a)).toFixed(1)}" y1="${(200+r1*Math.sin(a)).toFixed(1)}" x2="${(200+r2*Math.cos(a)).toFixed(1)}" y2="${(200+r2*Math.sin(a)).toFixed(1)}"/>`;
+  }
+  $("#ticks").innerHTML = t;
+  const strip = ["Cafés","Elixires","Poções","Doces encantados","Noites de lua","Refúgio entre mundos"].map(w => `<span>${w}</span>`).join("");
+  $("#marquee").innerHTML = strip + strip;
+})();
+
+// cardápio
+$("#tabs").innerHTML = MENU.map(c => `<a href="#${c.id}">${esc(c.titulo)}</a>`).join("") + `<a href="#extras">Extras</a>`;
+$("#menu").innerHTML = MENU.map((c, i) => `
+  <section class="cat" id="${c.id}">
+    <div class="cat-head reveal">
+      <span class="num" aria-hidden="true">${ROMAN[i]}</span>
+      <div><h3>${esc(c.titulo)}</h3><p>${esc(c.sub)}</p></div>
+    </div>
+    <div class="dishes">
+      ${c.itens.map(([n, d, p, img], j) => `
+        <article class="dish reveal" style="transition-delay:${(j % 4) * 70}ms">
+          <div class="plate"><img src="img/${img}.webp" alt="${esc(n)}" width="170" height="170" loading="lazy"></div>
+          <h4>${esc(n)}</h4>
+          <p>${esc(d)}</p>
+          <span class="price">${brl(p)}</span>
+        </article>`).join("")}
+    </div>
+  </section>`).join("") + `
+  <aside class="extras reveal" id="extras">
+    <div><p class="caps">Para turbinar</p><h3>Extras</h3></div>
+    <ul>${EXTRAS.map(([n, p]) => `<li><span>${esc(n)}</span><i></i><span>+ ${brl(p)}</span></li>`).join("")}</ul>
+  </aside>`;
+
+// contato
+const cards = [];
+if (CONTATO.endereco) cards.push(["Endereço", `${esc(CONTATO.endereco)}<br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTATO.endereco)}" target="_blank" rel="noopener">Abrir no mapa</a>`]);
+if (CONTATO.horario) cards.push(["Horários", esc(CONTATO.horario)]);
+const wa = CONTATO.whatsapp.replace(/\D/g, "");
+if (wa) cards.push(["WhatsApp", `<a href="https://wa.me/${wa}" target="_blank" rel="noopener">Fale com a gente</a>`]);
+const ig = CONTATO.instagram.replace(/[^\w.]/g, "");
+if (ig) cards.push(["Instagram", `<a href="https://instagram.com/${ig}" target="_blank" rel="noopener">@${ig}</a>`]);
 if (cards.length) {
-  document.getElementById("visite-slot").innerHTML = `
-    <section id="visite">
-      <h2><span>${icon}Visite-nos${icon}</span></h2>
-      <div class="info">${cards.map(([t,c]) => `<div class="item"><h3>${t}</h3><div>${c}</div></div>`).join("")}</div>
+  $("#visite-slot").innerHTML = `
+    <section class="visit" id="visite">
+      <div class="reveal"><p class="caps">Visite-nos</p><h2>Venha se perder por aqui</h2></div>
+      <div class="info reveal">${cards.map(([t, c]) => `<div><span class="caps">${t}</span><p>${c}</p></div>`).join("")}</div>
     </section>`;
-  document.getElementById("nav-visite").hidden = false;
+} else {
+  document.querySelectorAll("[data-needs-contact]").forEach(a => a.remove());
 }
 if (wa) document.body.insertAdjacentHTML("beforeend",
-  `<a class="wa" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>`);
+  `<a class="wa" href="https://wa.me/${wa}" target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .5l-.3.5-.4.5c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.9-1c.2-.3.4-.2.6-.1l2 .9c.3.1.4.2.5.3.1.2.1.7-.1 1.3z"/></svg></a>`);
+
+// topo sólido ao rolar
+const bar = $("#topbar");
+const onScroll = () => bar.classList.toggle("solid", scrollY > 40);
+addEventListener("scroll", onScroll, { passive: true }); onScroll();
+
+// revelar ao rolar + aba ativa
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+  }), { rootMargin: "0px 0px -8% 0px" });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+  const tabs = [...document.querySelectorAll("#tabs a")];
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    tabs.forEach(t => {
+      const on = t.hash === "#" + e.target.id;
+      t.classList.toggle("on", on);
+      if (on) { const box = t.parentElement; box.scrollTo({ left: t.offsetLeft - (box.clientWidth - t.offsetWidth) / 2, behavior: "smooth" }); }
+    });
+  }), { rootMargin: "-45% 0px -50% 0px" });
+  document.querySelectorAll(".cat, #extras").forEach(s => spy.observe(s));
+} else {
+  document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+}
 </script>
 </body>
 </html>
