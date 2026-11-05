@@ -111,6 +111,9 @@ h2 svg{width:20px;height:20px;color:var(--gold)}
   content:"";position:absolute;top:8px;right:8px;width:14px;height:14px;
   border-top:1px solid var(--gold);border-right:1px solid var(--gold);border-top-right-radius:6px;opacity:.5;
 }
+.item.has-img{display:flex;gap:16px;align-items:center}
+.item.has-img img{width:96px;height:96px;flex:none;border-radius:10px;object-fit:cover;border:1px solid var(--line);background:#120a15}
+.item.has-img .txt{flex:1;min-width:0}
 .row{display:flex;align-items:baseline;gap:10px}
 .name{font-style:italic;font-weight:500;font-size:1.3rem;color:var(--gold-hi)}
 .dots{flex:1;border-bottom:1px dotted rgba(214,166,128,.35);transform:translateY(-4px);min-width:14px}
@@ -150,6 +153,11 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
   .sun,.moon-l{display:none}
   header{padding-top:40px}
   .grid{grid-template-columns:1fr}
+  .item.has-img{gap:12px}
+  .item.has-img img{width:80px;height:80px}
+  nav{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;scrollbar-width:none}
+  nav::-webkit-scrollbar{display:none}
+  nav a{flex:none;white-space:nowrap}
 }
 @media print{
   body{background:#fff;color:#222}
@@ -229,34 +237,34 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
 // Para alterar o cardápio, edite apenas esta estrutura.
 const MENU = [
   { id:"cafes", titulo:"Cafés", itens:[
-    ["Cappuccino da Lua","Espresso, leite vaporizado e canela.",16],
-    ["Elixir de Vênus","Espresso, leite cremoso e baunilha.",18],
-    ["Poção de Cacau","Espresso, leite e chocolate, finalizado com chantilly.",18],
-    ["Café do Eremita","Café tradicional, intenso e aromático.",14],
-    ["Lua Negra","Espresso duplo para os amantes do café forte.",16],
-    ["Oráculo Gelado","Cold brew servido com gelo.",16],
+    ["Cappuccino da Lua","Espresso, leite vaporizado e canela.",16,"cappuccino-da-lua"],
+    ["Elixir de Vênus","Espresso, leite cremoso e baunilha.",18,"elixir-de-venus"],
+    ["Poção de Cacau","Espresso, leite e chocolate, finalizado com chantilly.",18,"pocao-de-cacau"],
+    ["Café do Eremita","Café tradicional, intenso e aromático.",14,"cafe-do-eremita"],
+    ["Lua Negra","Espresso duplo para os amantes do café forte.",16,"lua-negra"],
+    ["Oráculo Gelado","Cold brew servido com gelo.",16,"oraculo-gelado"],
   ]},
   { id:"drinks", titulo:"Drinks", itens:[
-    ["Sangue da Lua","Frutas vermelhas, hibisco, limão e água com gás.",18],
-    ["Lágrimas de Selene","Limonada com lavanda.",17],
-    ["Elixir Solar","Maracujá, laranja, alecrim e água com gás.",17],
-    ["Aura Violeta","Uva, limão e água gaseificada.",17],
+    ["Sangue da Lua","Frutas vermelhas, hibisco, limão e água com gás.",18,"sangue-da-lua"],
+    ["Lágrimas de Selene","Limonada com lavanda.",17,"lagrimas-de-selene"],
+    ["Elixir Solar","Maracujá, laranja, alecrim e água com gás.",17,"elixir-solar"],
+    ["Aura Violeta","Uva, limão e água gaseificada.",17,"aura-violeta"],
   ]},
   { id:"salgados", titulo:"Comidas Salgadas", itens:[
-    ["Crescente Lunar","Croissant amanteigado com queijo e presunto.",18],
-    ["Maná dos Deuses","Pão de queijo quentinho.",15],
-    ["Tostex do Sol","Misto quente com queijo e presunto.",16],
-    ["Sanduíche do Alquimista","Frango, queijo, folhas e molho da casa.",20],
-    ["Torrada da Deusa","Pão artesanal com cream cheese e ervas.",16],
+    ["Crescente Lunar","Croissant amanteigado com queijo e presunto.",18,"crescente-lunar"],
+    ["Maná dos Deuses","Pão de queijo quentinho.",15,"mana-dos-deuses"],
+    ["Tostex do Sol","Misto quente com queijo e presunto.",16,"tostex-do-sol"],
+    ["Sanduíche do Alquimista","Frango, queijo, folhas e molho da casa.",20,"sanduiche-do-alquimista"],
+    ["Torrada da Deusa","Pão artesanal com cream cheese e ervas.",16,"torrada-da-deusa"],
   ]},
   { id:"doces", titulo:"Doces e Petiscos", itens:[
-    ["Brownie da Meia-Noite","Brownie de chocolate com calda.",16],
-    ["Fatia de Vênus","Cheesecake com calda de frutas vermelhas.",18],
-    ["Lua de Cristal","Cheesecake com frutas.",18],
-    ["Biscoitos de Salem","Cookies com gotas de chocolate.",14],
-    ["Estrelas de Hécate","Mini biscoitos em formato de lua e estrela.",14],
-    ["Doce Encantamento","Brownie decorado com estrelas.",16],
-    ["Pão de Mel Lunar","Pão de mel com cobertura de chocolate.",15],
+    ["Brownie da Meia-Noite","Brownie de chocolate com calda.",16,"brownie-da-meia-noite"],
+    ["Fatia de Vênus","Cheesecake com calda de frutas vermelhas.",18,"fatia-de-venus"],
+    ["Lua de Cristal","Cheesecake com frutas.",18,"lua-de-cristal"],
+    ["Biscoitos de Salem","Cookies com gotas de chocolate.",14,"biscoitos-de-salem"],
+    ["Estrelas de Hécate","Mini biscoitos em formato de lua e estrela.",14,"estrelas-de-hecate"],
+    ["Doce Encantamento","Brownie decorado com estrelas.",16,"doce-encantamento"],
+    ["Pão de Mel Lunar","Pão de mel com cobertura de chocolate.",15,"pao-de-mel-lunar"],
   ]},
 ];
 const EXTRAS = [
@@ -274,10 +282,13 @@ let html = MENU.map(s => `
   <section id="${s.id}">
     <h2><span>${icon}${esc(s.titulo)}${icon}</span></h2>
     <div class="grid">
-      ${s.itens.map(([n,d,p]) => `
-        <article class="item">
-          <div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">${brl(p)}</span></div>
-          <p class="desc">${esc(d)}</p>
+      ${s.itens.map(([n,d,p,img]) => `
+        <article class="item has-img">
+          <img src="img/${img}.webp" alt="${esc(n)}" width="96" height="96" loading="lazy">
+          <div class="txt">
+            <div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">${brl(p)}</span></div>
+            <p class="desc">${esc(d)}</p>
+          </div>
         </article>`).join("")}
     </div>
   </section>`).join("");
