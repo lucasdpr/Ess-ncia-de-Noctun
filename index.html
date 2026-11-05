@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essência de Noctun — Cardápio</title>
+<meta name="description" content="Cardápio da Essência de Noctun, cafeteria esotérica.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0810;
+  --bg2:#150d19;
+  --card:rgba(255,235,210,.035);
+  --line:rgba(214,166,128,.28);
+  --gold:#d9a882;
+  --gold-hi:#f1d2b4;
+  --text:#e9dccd;
+  --muted:#a99a8e;
+  --violet:#8a6bbf;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:
+    radial-gradient(900px 500px at 85% -5%,rgba(138,107,191,.20),transparent 60%),
+    radial-gradient(700px 500px at 5% 35%,rgba(138,107,191,.10),transparent 60%),
+    radial-gradient(800px 600px at 50% 110%,rgba(217,168,130,.10),transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:18px;line-height:1.4;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+}
+/* estrelas */
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.55;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,#f1d2b4,transparent),
+    radial-gradient(1px 1px at 78% 12%,#f1d2b4,transparent),
+    radial-gradient(1.5px 1.5px at 33% 62%,#d9a882,transparent),
+    radial-gradient(1px 1px at 90% 70%,#f1d2b4,transparent),
+    radial-gradient(1px 1px at 55% 35%,#d9a882,transparent),
+    radial-gradient(1.5px 1.5px at 8% 88%,#f1d2b4,transparent),
+    radial-gradient(1px 1px at 66% 92%,#d9a882,transparent);
+}
+.wrap{position:relative;max-width:1080px;margin:0 auto;padding:0 20px 64px}
+
+/* ---------- topo ---------- */
+header{text-align:center;padding:56px 0 28px;position:relative}
+.sun{position:absolute;right:0;top:28px;width:110px;opacity:.75}
+.moon-l{position:absolute;left:0;top:34px;width:70px;opacity:.8}
+.brand{
+  font-family:'Cinzel',serif;font-weight:500;
+  font-size:clamp(2rem,6vw,3.6rem);letter-spacing:.04em;
+  color:var(--gold-hi);
+  text-shadow:0 0 28px rgba(217,168,130,.35);
+}
+.sub{
+  font-family:'Cinzel',serif;letter-spacing:.42em;text-transform:uppercase;
+  font-size:clamp(.7rem,1.8vw,.95rem);color:var(--gold);margin-top:6px;
+}
+.tag{font-style:italic;font-size:clamp(1.1rem,2.6vw,1.4rem);color:var(--muted);margin-top:16px}
+.orn{display:flex;align-items:center;gap:14px;justify-content:center;margin:26px auto 0;max-width:420px;color:var(--gold)}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+.orn::after{transform:scaleX(-1)}
+
+/* ---------- navegação ---------- */
+nav{
+  position:sticky;top:0;z-index:10;
+  display:flex;gap:8px;justify-content:center;flex-wrap:wrap;
+  padding:12px 0;margin-bottom:8px;
+  background:linear-gradient(var(--bg) 70%,transparent);
+}
+nav a{
+  font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;
+  border:1px solid var(--line);border-radius:999px;padding:7px 14px;
+  transition:.2s;
+}
+nav a:hover,nav a:focus-visible{background:rgba(217,168,130,.14);color:var(--gold-hi);outline:none}
+
+/* ---------- seções ---------- */
+section{margin-top:44px;scroll-margin-top:70px}
+h2{
+  font-family:'Cinzel',serif;font-weight:400;
+  font-size:clamp(1.5rem,4vw,2.1rem);letter-spacing:.08em;
+  color:var(--gold-hi);text-align:center;
+  display:flex;align-items:center;gap:16px;
+}
+h2::before,h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+h2::after{transform:scaleX(-1)}
+h2 span{display:inline-flex;align-items:center;gap:12px}
+h2 svg{width:20px;height:20px;color:var(--gold)}
+
+.grid{
+  display:grid;gap:14px;margin-top:22px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+}
+.item{
+  position:relative;
+  background:var(--card);
+  border:1px solid var(--line);border-radius:14px;
+  padding:16px 18px 16px;
+  transition:transform .25s,border-color .25s,background .25s;
+}
+.item:hover{transform:translateY(-3px);border-color:rgba(241,210,180,.6);background:rgba(255,235,210,.06)}
+.item::after{ /* canto ornamental */
+  content:"";position:absolute;top:8px;right:8px;width:14px;height:14px;
+  border-top:1px solid var(--gold);border-right:1px solid var(--gold);border-top-right-radius:6px;opacity:.5;
+}
+.row{display:flex;align-items:baseline;gap:10px}
+.name{font-style:italic;font-weight:500;font-size:1.3rem;color:var(--gold-hi)}
+.dots{flex:1;border-bottom:1px dotted rgba(214,166,128,.35);transform:translateY(-4px);min-width:14px}
+.price{font-family:'Cinzel',serif;font-size:.98rem;color:var(--gold);white-space:nowrap}
+.desc{color:var(--muted);font-size:1.02rem;margin-top:4px}
+
+/* ---------- extras ---------- */
+.extras{
+  max-width:560px;margin:22px auto 0;
+  border:1px solid var(--line);border-radius:14px;padding:8px 22px;
+  background:var(--card);
+}
+.extras .row{padding:11px 0}
+.extras .row + .row{border-top:1px solid rgba(214,166,128,.12)}
+.extras .name{font-style:normal;font-size:1.12rem;color:var(--text)}
+
+footer{text-align:center;margin-top:56px}
+footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0 24px rgba(217,168,130,.3)}
+.phases{display:flex;justify-content:center;gap:14px;margin-top:20px;color:var(--gold)}
+.phases svg{width:20px;height:20px}
+
+@media (max-width:640px){
+  body{font-size:17px}
+  .sun,.moon-l{display:none}
+  header{padding-top:40px}
+  .grid{grid-template-columns:1fr}
+}
+@media print{
+  body{background:#fff;color:#222}
+  body::before,nav,.sun,.moon-l{display:none}
+  .item,.extras{border-color:#bbb;background:none;break-inside:avoid}
+  .brand,h2,.name,footer p{color:#5a3a1e;text-shadow:none}
+  .price,.sub{color:#7a5a3e}.desc{color:#555}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="crescent" viewBox="0 0 24 24"><path fill="currentColor" d="M15.5 3a9 9 0 1 0 5.5 16A7.5 7.5 0 0 1 15.5 3z"/></symbol>
+    <symbol id="star" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2l2 7 7 3-7 3-2 7-2-7-7-3 7-3z"/></symbol>
+    <symbol id="full" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="currentColor"/></symbol>
+    <symbol id="half" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path fill="currentColor" d="M12 4a8 8 0 0 1 0 16z"/></symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+  <header>
+    <svg class="moon-l" viewBox="0 0 100 130" fill="none" stroke="currentColor" style="color:var(--gold)" aria-hidden="true">
+      <path d="M72 6a58 58 0 1 0 0 118A46 46 0 0 1 72 6z" stroke-width="2"/>
+      <path d="M62 22a40 40 0 0 0 0 86" stroke-width="1" opacity=".6"/>
+    </svg>
+    <svg class="sun" viewBox="0 0 120 120" fill="none" stroke="currentColor" style="color:var(--gold)" aria-hidden="true">
+      <circle cx="60" cy="60" r="26" stroke-width="1.6"/>
+      <circle cx="60" cy="60" r="19" stroke-width="1" opacity=".6"/>
+      <g stroke-width="1.4">
+        <path d="M60 4v18M60 98v18M4 60h18M98 60h18M20 20l13 13M87 87l13 13M100 20L87 33M33 87L20 100"/>
+        <path d="M60 14v8M60 98v8M14 60h8M98 60h8" opacity=".5"/>
+      </g>
+      <path d="M52 56q3-3 6 0M62 56q3-3 6 0M54 70q6 5 12 0" stroke-width="1.3"/>
+    </svg>
+
+    <h1 class="brand">Essência de Noctun</h1>
+    <p class="sub">Cafeteria Esotérica</p>
+    <p class="tag">Mais que uma cafeteria, um refúgio entre mundos.</p>
+    <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
+  </header>
+
+  <nav aria-label="Seções do cardápio">
+    <a href="#cafes">Cafés</a>
+    <a href="#drinks">Drinks</a>
+    <a href="#salgados">Salgados</a>
+    <a href="#doces">Doces</a>
+    <a href="#extras">Extras</a>
+  </nav>
+
+  <main id="menu"><!-- gerado abaixo --></main>
+
+  <footer>
+    <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
+    <p>Que a magia do café ilumine o seu dia.</p>
+    <div class="phases" aria-hidden="true">
+      <svg><use href="#crescent"/></svg><svg><use href="#half"/></svg><svg><use href="#full"/></svg><svg><use href="#half" style="transform:scaleX(-1);transform-origin:center"/></svg><svg style="transform:scaleX(-1)"><use href="#crescent"/></svg>
+    </div>
+  </footer>
+</div>
+
+<script>
+// Para alterar o cardápio, edite apenas esta estrutura.
+const MENU = [
+  { id:"cafes", titulo:"Cafés", itens:[
+    ["Cappuccino da Lua","Espresso, leite vaporizado e canela.",16],
+    ["Elixir de Vênus","Espresso, leite cremoso e baunilha.",18],
+    ["Poção de Cacau","Espresso, leite e chocolate, finalizado com chantilly.",18],
+    ["Café do Eremita","Café tradicional, intenso e aromático.",14],
+    ["Lua Negra","Espresso duplo para os amantes do café forte.",16],
+    ["Oráculo Gelado","Cold brew servido com gelo.",16],
+  ]},
+  { id:"drinks", titulo:"Drinks", itens:[
+    ["Sangue da Lua","Frutas vermelhas, hibisco, limão e água com gás.",18],
+    ["Lágrimas de Selene","Limonada com lavanda.",17],
+    ["Elixir Solar","Maracujá, laranja, alecrim e água com gás.",17],
+    ["Aura Violeta","Uva, limão e água gaseificada.",17],
+  ]},
+  { id:"salgados", titulo:"Comidas Salgadas", itens:[
+    ["Crescente Lunar","Croissant amanteigado com queijo e presunto.",18],
+    ["Maná dos Deuses","Pão de queijo quentinho.",15],
+    ["Tostex do Sol","Misto quente com queijo e presunto.",16],
+    ["Sanduíche do Alquimista","Frango, queijo, folhas e molho da casa.",20],
+    ["Torrada da Deusa","Pão artesanal com cream cheese e ervas.",16],
+  ]},
+  { id:"doces", titulo:"Doces e Petiscos", itens:[
+    ["Brownie da Meia-Noite","Brownie de chocolate com calda.",16],
+    ["Fatia de Vênus","Cheesecake com calda de frutas vermelhas.",18],
+    ["Lua de Cristal","Cheesecake com frutas.",18],
+    ["Biscoitos de Salem","Cookies com gotas de chocolate.",14],
+    ["Estrelas de Hécate","Mini biscoitos em formato de lua e estrela.",14],
+    ["Doce Encantamento","Brownie decorado com estrelas.",16],
+    ["Pão de Mel Lunar","Pão de mel com cobertura de chocolate.",15],
+  ]},
+];
+const EXTRAS = [
+  ["Leite vegetal (aveia, amêndoas ou coco)",2],
+  ["Shot de espresso",3],
+  ["Chantilly",2],
+  ["Mel ou açúcar mascavo",1],
+];
+
+const brl = n => "R$ " + n.toFixed(0);
+const esc = s => s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const icon = '<svg aria-hidden="true"><use href="#crescent"/></svg>';
+
+let html = MENU.map(s => `
+  <section id="${s.id}">
+    <h2><span>${icon}${esc(s.titulo)}${icon}</span></h2>
+    <div class="grid">
+      ${s.itens.map(([n,d,p]) => `
+        <article class="item">
+          <div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">${brl(p)}</span></div>
+          <p class="desc">${esc(d)}</p>
+        </article>`).join("")}
+    </div>
+  </section>`).join("");
+
+html += `
+  <section id="extras">
+    <h2><span>${icon}Extras${icon}</span></h2>
+    <div class="extras">
+      ${EXTRAS.map(([n,p]) => `<div class="row"><span class="name">${esc(n)}</span><span class="dots"></span><span class="price">+ ${brl(p)}</span></div>`).join("")}
+    </div>
+  </section>`;
+
+document.getElementById("menu").innerHTML = html;
+</script>
+</body>
+</html>
