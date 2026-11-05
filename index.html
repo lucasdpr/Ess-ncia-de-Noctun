@@ -190,10 +190,25 @@ footer small{color:var(--muted);font-size:.9rem}
   .reveal{opacity:1;transform:none}
 }
 @media print{
-  .sky,body::after,.topbar,.tabs,.float,.ring,.scroll,.marquee,.actions,.wa{display:none!important}
-  body{background:#fff;color:#222}.reveal{opacity:1;transform:none}
-  .hero{min-height:auto;padding:20px 0}
+  @page{size:A4;margin:0}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sky,body::after,.topbar,.tabs,.float,.hero,.marquee,.about,.menu-head,.wa,#visite-slot{display:none!important}
+  body{background:var(--bg)}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .print-head{display:block!important;text-align:center;padding:34px 0 6px}
+  .container{max-width:none;padding:0 38px}
+  .cat{break-inside:avoid;page-break-inside:avoid;padding-top:20px}
+  .cat-head{margin-bottom:14px}
+  .cat:nth-of-type(3){break-before:page;page-break-before:always;padding-top:30px}
+  .dishes{grid-template-columns:repeat(4,1fr);gap:18px 12px}
+  .plate{width:92px;margin-bottom:12px}
+  .dish h4{font-size:1.05rem}.dish p{font-size:.85rem}.price{font-size:.78rem;margin-top:8px}
+  .extras{break-inside:avoid;margin-top:36px;padding:22px;grid-template-columns:1fr;transform:translateY(30px)}
+  .extras ul{grid-template-columns:1fr 1fr}
+  footer{margin-top:30px;padding:26px 0}
 }
+.print-head{display:none}
+.print-head .pt{font-style:italic;font-weight:300;font-size:2.6rem;color:var(--gold-hi);line-height:1.1;margin-top:4px}
 </style>
 </head>
 <body class="no-js">
@@ -265,6 +280,7 @@ footer small{color:var(--muted);font-size:.9rem}
 </section>
 
 <section id="cardapio">
+  <div class="print-head"><p class="caps">Cafeteria Esotérica</p><p class="pt">Essência de Noctun</p></div>
   <div class="menu-head container reveal">
     <p class="caps">Cardápio</p>
     <h2>Os rituais da casa</h2>
