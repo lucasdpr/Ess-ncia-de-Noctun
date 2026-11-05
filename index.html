@@ -132,6 +132,19 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
 .phases{display:flex;justify-content:center;gap:14px;margin-top:20px;color:var(--gold)}
 .phases svg{width:20px;height:20px}
 
+.hero{min-height:62vh;display:flex;flex-direction:column;justify-content:center}
+.cta{display:inline-block;margin-top:28px;font-family:'Cinzel',serif;letter-spacing:.16em;text-transform:uppercase;font-size:.85rem;
+  color:#1a0f14;background:linear-gradient(135deg,var(--gold-hi),var(--gold));padding:13px 28px;border-radius:999px;text-decoration:none;
+  box-shadow:0 0 30px rgba(217,168,130,.3);transition:.2s}
+.cta:hover,.cta:focus-visible{transform:translateY(-2px);box-shadow:0 0 40px rgba(217,168,130,.5);outline:none}
+.about{max-width:680px;margin:22px auto 0;text-align:center;font-size:1.25rem;color:var(--text)}
+.about p+p{margin-top:14px;color:var(--muted)}
+.info{display:grid;gap:14px;margin-top:22px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.info .item{text-align:center;padding:22px 18px}
+.info h3{font-family:'Cinzel',serif;font-weight:400;font-size:.95rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.info a{color:var(--gold-hi)}
+.wa{position:fixed;right:18px;bottom:18px;z-index:20;background:#25a35a;color:#fff;font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.1em;
+  text-decoration:none;padding:12px 18px;border-radius:999px;box-shadow:0 6px 20px rgba(0,0,0,.45)}
 @media (max-width:640px){
   body{font-size:17px}
   .sun,.moon-l{display:none}
@@ -140,7 +153,7 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
 }
 @media print{
   body{background:#fff;color:#222}
-  body::before,nav,.sun,.moon-l{display:none}
+  body::before,nav,.sun,.moon-l,.cta,.wa{display:none}
   .item,.extras{border-color:#bbb;background:none;break-inside:avoid}
   .brand,h2,.name,footer p{color:#5a3a1e;text-shadow:none}
   .price,.sub{color:#7a5a3e}.desc{color:#555}
@@ -159,7 +172,7 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
 </svg>
 
 <div class="wrap">
-  <header>
+  <header class="hero" id="topo">
     <svg class="moon-l" viewBox="0 0 100 130" fill="none" stroke="currentColor" style="color:var(--gold)" aria-hidden="true">
       <path d="M72 6a58 58 0 1 0 0 118A46 46 0 0 1 72 6z" stroke-width="2"/>
       <path d="M62 22a40 40 0 0 0 0 86" stroke-width="1" opacity=".6"/>
@@ -178,17 +191,30 @@ footer p{font-style:italic;font-size:1.5rem;color:var(--gold-hi);text-shadow:0 0
     <p class="sub">Cafeteria Esotérica</p>
     <p class="tag">Mais que uma cafeteria, um refúgio entre mundos.</p>
     <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
+    <div><a class="cta" href="#cafes">Ver cardápio</a></div>
   </header>
 
   <nav aria-label="Seções do cardápio">
+    <a href="#sobre">Sobre</a>
     <a href="#cafes">Cafés</a>
     <a href="#drinks">Drinks</a>
     <a href="#salgados">Salgados</a>
     <a href="#doces">Doces</a>
     <a href="#extras">Extras</a>
+    <a href="#visite" id="nav-visite" hidden>Visite</a>
   </nav>
 
+  <section id="sobre">
+    <h2><span>Sobre</span></h2>
+    <div class="about">
+      <p>Mais que uma cafeteria, um refúgio entre mundos. Aqui o café encontra o místico: cada xícara, drink e doce leva o nome de uma lua, uma deusa ou um oráculo.</p>
+      <p>Entre, respire fundo e deixe a noite te acolher.</p>
+    </div>
+  </section>
+
   <main id="menu"><!-- gerado abaixo --></main>
+
+  <div id="visite-slot"></div>
 
   <footer>
     <div class="orn"><svg width="14" height="14"><use href="#star"/></svg></div>
@@ -265,6 +291,33 @@ html += `
   </section>`;
 
 document.getElementById("menu").innerHTML = html;
+
+// ---- Contato: preencha os campos abaixo. Campos vazios não aparecem no site. ----
+const CONTATO = {
+  endereco: "",   // ex.: "Rua das Luas, 123 — Centro"
+  horario:  "",   // ex.: "Ter a Dom, 14h às 22h"
+  whatsapp: "",   // somente números com DDI/DDD, ex.: "5511999999999"
+  instagram:"",   // somente o usuário, ex.: "essenciadenoctun"
+};
+const cards = [];
+if (CONTATO.endereco) cards.push(["Endereço", esc(CONTATO.endereco) +
+  ` <br><a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONTATO.endereco)}" target="_blank" rel="noopener">Ver no mapa</a>`]);
+if (CONTATO.horario) cards.push(["Horários", esc(CONTATO.horario)]);
+const wa = CONTATO.whatsapp.replace(/\D/g,"");
+if (wa) cards.push(["WhatsApp", `<a href="https://wa.me/${wa}" target="_blank" rel="noopener">Fale conosco</a>`]);
+const ig = CONTATO.instagram.replace(/[^\w.]/g,"");
+if (ig) cards.push(["Instagram", `<a href="https://instagram.com/${ig}" target="_blank" rel="noopener">@${ig}</a>`]);
+
+if (cards.length) {
+  document.getElementById("visite-slot").innerHTML = `
+    <section id="visite">
+      <h2><span>${icon}Visite-nos${icon}</span></h2>
+      <div class="info">${cards.map(([t,c]) => `<div class="item"><h3>${t}</h3><div>${c}</div></div>`).join("")}</div>
+    </section>`;
+  document.getElementById("nav-visite").hidden = false;
+}
+if (wa) document.body.insertAdjacentHTML("beforeend",
+  `<a class="wa" href="https://wa.me/${wa}" target="_blank" rel="noopener">WhatsApp</a>`);
 </script>
 </body>
 </html>
